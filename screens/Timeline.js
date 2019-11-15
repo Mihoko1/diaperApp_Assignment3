@@ -6,7 +6,7 @@ import Head from '../components/Head';
 var Dimensions = require('Dimensions');
 var {width} = Dimensions.get('window');
 
-export default class Home extends Component{
+export default class Timeline extends Component{
 
   static navigationOptions = ()=>({
     title: 'Hi Miho!',

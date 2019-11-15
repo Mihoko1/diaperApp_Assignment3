@@ -8,14 +8,16 @@ import {createStackNavigator} from 'react-navigation-stack'
 import {createDrawerNavigator, DrawerItems} from 'react-navigation-drawer'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import Home from './screens/Home';
+import Timeline from './screens/Timeline';
+import Analysis from './screens/Analysis';
 import Profile from './screens/Profile';
 import Login from './screens/Login';
 import SignUp from './screens/SignUp';
 
 const HomeTab = createBottomTabNavigator(
   {
-      Home: { screen: createStackNavigator({ Home: { screen: Home } }) },
+      Timeline: { screen: createStackNavigator({ Timeline: { screen: Timeline } }) },
+      Analysis: { screen: createStackNavigator({ Analysis: { screen: Analysis } }) },
       Profile: { screen: createStackNavigator({ Profile: { screen: Profile } }) }
   },
   {
@@ -24,7 +26,7 @@ const HomeTab = createBottomTabNavigator(
         const { routeName } = navigation.state;
         let IconComponent = Ionicons;
         let iconName;
-        if (routeName === 'Home') {
+        if (routeName === 'Timeline') {
           iconName = `ios-home`;
           
         } else if (routeName === 'Profile') {
@@ -43,7 +45,7 @@ const HomeTab = createBottomTabNavigator(
 
 const SignedIn = createDrawerNavigator(
   {
-      Home: { screen: HomeTab }
+      Timeline: { screen: HomeTab }
   },
   {
       contentComponent: (props) => (
