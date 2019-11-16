@@ -4,6 +4,7 @@ import firebase from '../firebase';
 import Head from '../components/Head';
 
 
+
 var Dimensions = require('Dimensions');
 var {width} = Dimensions.get('window');
 
@@ -22,12 +23,12 @@ export default class Timeline extends Component{
   });
   
 
-  state = { currentUser: null }
+//   state = { currentUser: null }
+//   componentDidMount() {
+//     const { currentUser } = firebase.auth()
+//     this.setState({ currentUser })
+// }
 
-  componentDidMount() {
-      const { currentUser } = firebase.auth()
-      this.setState({ currentUser })
-  }
   
   
   
@@ -36,7 +37,9 @@ export default class Timeline extends Component{
       <View style = {styles.container}>
           <Head />
           <ScrollView style={styles.scrollContainer}>
-
+            {/* <Text>
+              Hi {currentUser && currentUser.email}!
+            </Text> */}
             <TouchableOpacity
               style={styles.doneBtn}
               onPress={() => this.props.navigation.navigate('Timer')}

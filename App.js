@@ -134,7 +134,9 @@ const createRootNavigator = (signedIn = false) => {
 
 
 
+
 const Layout = createAppContainer(createRootNavigator(true));
+
 
 
 export default class App extends React.Component {
