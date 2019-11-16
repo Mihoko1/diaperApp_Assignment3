@@ -12,6 +12,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Timeline from './screens/Timeline';
 import Analysis from './screens/Analysis';
 import Profile from './screens/Profile';
+import Loading from './screens/Loading';
 import Login from './screens/Login';
 import SignUp from './screens/SignUp';
 import Timer from './screens/Timer';
@@ -105,8 +106,16 @@ const SignedIn = createDrawerNavigator(
 
 const SignedOut = createStackNavigator(
   {
-      SignUp: { screen: SignUp },
-      Login: { screen: Login }
+      SignUp: { screen: SignUp ,
+        navigationOptions: {
+          header: null,
+        },
+      },
+      Login: { screen: Login ,
+        navigationOptions: {
+          header: null,
+        },
+      },
   }
 );
 
@@ -122,6 +131,7 @@ const createRootNavigator = (signedIn = false) => {
       }
   );
 }
+
 
 
 const Layout = createAppContainer(createRootNavigator(true));

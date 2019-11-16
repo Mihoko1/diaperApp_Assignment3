@@ -3,6 +3,7 @@ import { View, Image, Text, StyleSheet, TextInput,TouchableOpacity, Alert, Scrol
 import firebase from '../firebase';
 import Head from '../components/Head';
 
+
 var Dimensions = require('Dimensions');
 var {width} = Dimensions.get('window');
 
@@ -21,6 +22,13 @@ export default class Timeline extends Component{
   });
   
 
+  state = { currentUser: null }
+
+  componentDidMount() {
+      const { currentUser } = firebase.auth()
+      this.setState({ currentUser })
+  }
+  
   
   
   render(){

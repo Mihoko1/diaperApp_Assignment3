@@ -1,41 +1,76 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-import { onSignIn } from '../auth';
-import { Card, Button, Input } from 'react-native-elements';
+// import React from 'react'
+// import { StyleSheet, Text, TextInput, View, Button, TouchableOpacity  } from 'react-native'
+// import styles from '../styles.js';
 
-class SignUp extends React.Component {
-    render() {
-        return (
-            <View style={{ paddingVertical: 20 }}>
-                <Card title="To Do List">
+// export default class signUp extends React.Component {
+//   state = { email: '', password: '', errorMessage: null }
+//   handleSignUp = () => {
+//     // TODO: For Firebase athu
+//     console.log('handleSignUp')
+//   }
+
+// render() {
+//     return (
+//       <View style={styles.container}>
+//       <Text style={{color:'#e93766', fontSize: 40}}>Sign Up</Text>
+//         {this.state.errorMessage &&
+//           <Text style={{ color: 'red' }}>
+//             {this.state.errorMessage}
+//           </Text>}
+//         <TextInput
+//           placeholder="Email"
+//           autoCapitalize="none"
+//           style={styles.textInput}
+//           onChangeText ={email => this.setState({ email })}
+//           value={this.state.email}
+//         />
+//         <TextInput
+//           secureTextEntry
+//           placeholder="Password"
+//           autoCapitalize="none"
+//           style={styles.textInput}
+//           onChangeText = {password => this.setState({ password })}
+//           value={this.state.password}
+//         />
+//         <Button title="Sign Up" color="#e93766" onPress = {this.handleSignUp}/>
+//         <View>
+//         <Text> Already have an account? <Text onPress = {() => this.props.navigation.navigate('Login')} style={{color:'#e93766', fontSize: 18}}> Login </Text></Text>
+//         </View>
+//       </View>
+//     )
+//   }
+// }
+
+import React from 'react';
+import { StyleSheet, Text, TextInput, View} from 'react-native';
+import { Container, Item, Form, Input, Button, Label } from "native-base";
+import styles from '../styles.js';
+export default class Login extends React.Component {
+ 
+  render() {
+    return (
+        <Container>
+            <Form>
+                <Item floatingLabel>
+                    <Label>Email</Label>
+                    <Input autoCapitalize="none" autoCorrect={false} />
+                </Item>
+                <Item floatingLabel>
+                    <Label>Password</Label>
                     <Input
-                        label="Email"
-                        autoCapitalize = 'none'
+                    secureTextEntry={true}
+                    autoCapitalize="none"
+                    autoCorrect={false}
                     />
-                    <Input
-                        label="Password"
-                        labelStyle={{ marginTop: 10 }}
-                        secureTextEntry
-                    />
-                    <Input
-                        label="ComfirmPassword"
-                        labelStyle={{ marginTop: 10 }}
-                        secureTextEntry
-                    />
-                    <Button
-                        title='SIGN UP'
-                        onPress={() => onSignIn().then(() => this.props.navigation.navigate('SignedIn'))}
-                        buttonStyle={{ marginTop: 20, backgroundColor:'#3a2995', borderRadius: 10 }}
-                    />
-                    <Button
-                        title='LOG IN'
-                        onPress={() => this.props.navigation.navigate('Login')}
-                        buttonStyle={{ marginTop: 40, backgroundColor:'#d81b60', borderRadius: 10 }}
-                    />
-                </Card>
-            </View>
-        );
+                </Item>
+                <Button full rounded success>
+                    <Text>Sign Up</Text>
+                </Button>
+                <View>
+                    <Text> Already have an account? <Text onPress = {() => this.props.navigation.navigate('Login')} style={{color:'#e93766', fontSize: 18}}> Login </Text></Text>
+                </View>
+            </Form>
+        </Container>
+        )
     }
 }
-
-export default SignUp;
