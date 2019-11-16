@@ -21,181 +21,23 @@ export default class Timeline extends Component{
   });
   
 
-  todoDatabase = firebase.database().ref('todos');
-  state = {todos: {}, selectedId: '', checked: false, done: false, colorVal:'black'}
-
-  showConfirmAlert() {
-    Alert.alert(
-      'Delete?',
-      '',
-      [
-        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: 'Delete', onPress: () => {this.deleteList()}},
-      ],
-      { cancelable: false }
-    )
-  }
   
-  componentDidMount(){
-
-    this.todoDatabase.on('value', todos=> {
-      const todosJSON = todos.val();
-      this.setState({ todos: todosJSON === null ? {} : todosJSON});
-    })
-    
-  }
-
-  create(payload){
-    console.log(payload);
-    if(payload == null){
-      return;
-    }
-
-    this.todoDatabase.push({task: payload});
-
-  }
-
-  update(payload, state){
-    console.log("payload:"+ payload.todoId);
-    console.log("done"+ state);
-
-    if(!this.state.done){
- 
-      this.todoDatabase.child(payload.todoId).update({done: true});
-      this.setState({done: true})
-      console.log("donefalse:"+ this.state.done);
-    }else{
- 
-      this.todoDatabase.child(payload.todoId).update({done: false});
-      this.setState({done: false})
-      console.log("doneTrue:"+ this.state.done);
-    }
-      this.setState({selectedId: ''})
-  }
-
-  deleteList(payload){
-    if(this.state.selectedId ===''){
-        return;
-    }
-    this.todoDatabase.child(this.state.selectedId).remove();
-    this.setState({selectedId : ''})
-  }
-
+  
   render(){
     return(
       <View style = {styles.container}>
           <Head />
           <ScrollView style={styles.scrollContainer}>
 
-            {
-              Object.keys(this.state.todos).map((todoId, index) =>
-
-              <View key={index}  style={styles.listBox} >
-
-                <View style={styles.checkList}>
-                  {
-                    (JSON.stringify(this.state.todos[todoId].done) !== 'false' ) ? (
-                      <React.Fragment>
-                        <Text style={styles.todoText, {color: 'black', width: width - 120}}>{
-                              `${JSON.stringify(this.state.todos[todoId].task).slice(1, -1)}`
-                        }</Text> 
-
-                        <View style={styles.btnContainer}>
-                        <TouchableOpacity
-                          style={styles.doneBtn}
-                          onPress={() => {
-                            this.setState({
-                                done:this.state.done
-                              }),
-                              this.update({todoId})} 
-                          }
-                          underlayColor='#fff'>
-                          
-                            <Image style={styles.imagestyle} source={require('../assets/check.png')} />
-                          
-                          {/* <Text style={styles.btnText}>Done</Text> */}
-                        </TouchableOpacity>
-    
-                        <TouchableOpacity
-                          style={styles.deleteBtn}
-                          onPress={() => {
-                            this.setState({
-                                isChecked:!this.state.isChecked,
-                                selectedId: todoId
-                              }),
-                              this.showConfirmAlert()} 
-                          }
-                          underlayColor='#fff'>
-                          <Text style={styles.btnText}>Delete</Text>
-                        </TouchableOpacity>
-                      </View>
-                      </React.Fragment>
-
-                    ):(
-                      <React.Fragment>
-                          <Text style={styles.todoText, {color: '#bebebe', width: width - 120}}>{
-                            `${JSON.stringify(this.state.todos[todoId].task).slice(1, -1)}`
-                        }</Text> 
-
-                        <View style={styles.btnContainer}>
-                        <TouchableOpacity
-                          style={styles.doneBtn}
-                          onPress={() => {
-                            this.setState({
-                                done:this.state.done
-                              }),
-                              this.update({todoId})} 
-                          }
-                          underlayColor='#fff'>
-                          
-                            <Image style={styles.imagestyle} source={require('../assets/checked.png')} />
-                          
-                          {/* <Text style={styles.btnText}>Done</Text> */}
-                        </TouchableOpacity>
-    
-                        <TouchableOpacity
-                          style={styles.deleteBtn}
-                          onPress={() => {
-                            this.setState({
-                                isChecked:!this.state.isChecked,
-                                selectedId: todoId
-                              }),
-                              this.showConfirmAlert()} 
-                          }
-                          underlayColor='#fff'>
-                          <Text style={styles.btnText}>Delete</Text>
-                        </TouchableOpacity>
-                      </View>
-                    </React.Fragment>
-                    )
-                  }
-                    
-                 
-                </View>
-              </View>
-              )
-            }
+            <TouchableOpacity
+              style={styles.doneBtn}
+              onPress={() => this.props.navigation.navigate('Timer')}
+            >
+            
+              <Text style={styles.btnText}>Timer</Text>
+            </TouchableOpacity>
           </ScrollView>
         
-          <View style={styles.bottomContainer}>
-            <View style={styles.inputContainer}>
-                <View>
-                    <TextInput
-                    placeholder="Create new list"
-                    style={styles.createListInput}
-                    onChangeText={(color) => this.setState({color})}
-                  
-                    />
-                </View>
-                <TouchableOpacity
-                      style={styles.listInline}
-                      onPress={() => this.create(this.state.color)}
-                      underlayColor='#fff'>
-                      <Text style={styles.btnText}>Create</Text>
-                    </TouchableOpacity>
-               
-            </View>
-          </View>
       </View>
     )
   }
@@ -288,6 +130,8 @@ const styles = StyleSheet.create({
       marginBottom: 5,
       paddingTop:10,
       paddingBottom:10,
+      width: 100,
+      height: 50,
       // backgroundColor:'#3a2995',
       // borderRadius:10,
       // borderWidth: 1,
@@ -295,6 +139,7 @@ const styles = StyleSheet.create({
     },
     btnText:{
       color:'#fff',
+      backgroundColor: 'blue',
       textAlign:'center',
       paddingLeft : 10,
       paddingRight : 10

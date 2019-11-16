@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, Image, Button } from 'react-native';
 import {createSwitchNavigator,createAppContainer,SafeAreaView
 } from 'react-navigation';
+import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createStackNavigator} from 'react-navigation-stack'
@@ -13,12 +14,51 @@ import Analysis from './screens/Analysis';
 import Profile from './screens/Profile';
 import Login from './screens/Login';
 import SignUp from './screens/SignUp';
+import Timer from './screens/Timer';
+import Bottle from './screens/Bottle';
+import Solid from './screens/Solid';
+
+const TimerStack = createMaterialTopTabNavigator(
+  {
+    Timer: {
+      screen: Timer,
+    },
+    Bottle: {
+      screen: Bottle,
+    },
+    Solid: {
+      screen: Solid
+    }
+  },
+  {
+    initialRouteName: 'Timer',
+  }
+);
+
+const TimelineTab = createStackNavigator({
+  Timeline: {
+    screen: Timeline,
+    navigationOptions: {
+      headerBackTitle: 'Back',    // Title back button Back when we navigate to Profile from Settings
+    },
+  },
+  Timer: {
+    screen: TimerStack,
+    navigationOptions: ({ navigation }) => ({         
+      title: 'Stop Watch',
+    }),
+  },
+}, {
+  headerMode: 'screen',
+});
+
+
 
 const HomeTab = createBottomTabNavigator(
   {
-      Timeline: { screen: createStackNavigator({ Timeline: { screen: Timeline } }) },
-      Analysis: { screen: createStackNavigator({ Analysis: { screen: Analysis } }) },
-      Profile: { screen: createStackNavigator({ Profile: { screen: Profile } }) }
+      Timeline: { screen: TimelineTab},
+      Analysis: { screen: Analysis},
+      Profile: { screen: Profile}
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -151,6 +191,7 @@ export default class App extends React.Component {
         //     button at last
         //   </Text>
         // </View>
+
         <Layout />
       );
     } else {
