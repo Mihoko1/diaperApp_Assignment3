@@ -18,6 +18,7 @@ import SignUp from './screens/SignUp';
 import Timer from './screens/Timer';
 import Bottle from './screens/Bottle';
 import Solid from './screens/Solid';
+import Register from './screens/Register';
 
 const TimerStack = createMaterialTopTabNavigator(
   {
@@ -86,7 +87,7 @@ const HomeTab = createBottomTabNavigator(
 
 const SignedIn = createDrawerNavigator(
   {
-      Timeline: { screen: HomeTab }
+      Register: { screen: Register }
   },
   {
       contentComponent: (props) => (
@@ -102,6 +103,25 @@ const SignedIn = createDrawerNavigator(
       )
   }
 );
+
+// const SignedIn = createDrawerNavigator(
+//   {
+//       Timeline: { screen: HomeTab }
+//   },
+//   {
+//       contentComponent: (props) => (
+//           <View style={{ flex: 1 }}>
+//               <SafeAreaView style={{ flex:1, backgroundColor: '#3a2995' }}>
+//                   <DrawerItems {...props} />
+//                   <Button
+//                       title="Logout"
+//                       onPress={() => props.navigation.navigate('SignedOut')}
+//                   />
+//               </SafeAreaView>
+//           </View>
+//       )
+//   }
+// );
 
 
 const SignedOut = createStackNavigator(

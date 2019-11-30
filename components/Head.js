@@ -13,39 +13,37 @@ export default class Head extends Component {
 
      
       componentDidMount() {
-        var that = this;
-        var date = new Date().getDate(); //Current Date
-        var month = new Date().getMonth(); //Current Month
-        var year = new Date().getFullYear(); //Current Year
-        var day = new Date().getDay();
+        // var that = this;
+        // var date = new Date().getDate(); //Current Date
+        // var month = new Date().getMonth(); //Current Month
+        // var year = new Date().getFullYear(); //Current Year
+        // var day = new Date().getDay();
         
-        const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-        ];
-        const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
-        "Saturday"];
-        // var hours = new Date().getHours(); //Current Hours
-        // var min = new Date().getMinutes(); //Current Minutes
-        // var sec = new Date().getSeconds(); //Current Seconds
-        that.setState({
-          day: dayNames[day],
-          date:
-          monthNames[month] + ' ' +date+ ', ' + year + ' ' 
-        });
+        // const monthNames = ["January", "February", "March", "April", "May", "June",
+        // "July", "August", "September", "October", "November", "December"
+        // ];
+        // const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+        // "Saturday"];
+        
+        // that.setState({
+        //   day: dayNames[day],
+        //   date:
+        //   monthNames[month] + ' ' +date+ ', ' + year + ' ' 
+        // });
       }
     
   render(){
     return (
  
         <View style={styles.HeadTop}>
-            <Text
+            {/* <Text
             style={styles.day}>
             {this.state.day}
           </Text>
           <Text
             style={styles.today}>
             {this.state.date}
-          </Text>
+          </Text> */}
         </View>
     );
   }
