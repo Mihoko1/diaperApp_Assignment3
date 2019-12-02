@@ -15,15 +15,15 @@ export default class SignUp extends React.Component {
       
     }
 
-    create(userId,name,email){
-      console.log(userId,name,email);
-      if(userId == null || name == null || email){
-        return;
-      }
+    // create(userId,name,email){
+    //   console.log(userId,name,email);
+    //   if(userId == null || name == null || email){
+    //     return;
+    //   }
   
-      this.userDatabase.push({userId: userId, name: name, email: email});
+    //   this.userDatabase.push({userId: userId, name: name, email: email});
   
-    }
+    // }
     
     handleSignUp = () => {
       firebase
@@ -31,8 +31,8 @@ export default class SignUp extends React.Component {
         .createUserWithEmailAndPassword(this.state.email, this.state.password)
         .then(() =>
         console.log(firebase.auth()),
-        this.create(this.state.email, this.state.name,this.state.email),
-        this.props.navigation.navigate('Timeline'))
+        // this.create(this.state.email, this.state.name,this.state.email),
+        this.props.navigation.navigate('Register'))
         .catch(error => this.setState({ errorMessage: error.message }))
     }
 
@@ -44,13 +44,13 @@ render() {
           <Text style={{ color: 'red' }}>
             {this.state.errorMessage}
           </Text>}
-          <TextInput
+          {/* <TextInput
           placeholder="Name"
           autoCapitalize="none"
           style={styles.textInput}
           onChangeText={name => this.setState({ name })}
           value={this.state.name}
-        />
+        /> */}
         <TextInput
           placeholder="Email"
           autoCapitalize="none"

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Picker, View, Image, Text, StyleSheet, TextInput,TouchableOpacity, Alert, ScrollView} from 'react-native';
 import { RadioButton } from 'react-native-paper';
+import RNPickerSelect from 'react-native-picker-select';
 import Modal from "react-native-modal";
 import { FormLabel, FormInput } from 'react-native-elements';
 
@@ -75,6 +76,8 @@ export default class Register extends Component{
   
   render(){
     const { sex, currentUser} = this.state;
+    
+
    
     return(
       <View style = {styles.container}>
@@ -122,7 +125,7 @@ export default class Register extends Component{
                     <View>
                     
                     
-                      <Picker
+                      {/* <Picker
                         selectedValue={this.state.relationship}
                         style={{height: 50, width: '100%'}}
                         onValueChange={(itemValue) =>
@@ -133,7 +136,22 @@ export default class Register extends Component{
                         <Picker.Item label="Family Member" value="familyMember" />
                         <Picker.Item label="Nanny/Babysitter" value="nannyBabysitter" />
                         <Picker.Item label="other" value="other" />
-                      </Picker>
+                      </Picker> */}
+
+                      <RNPickerSelect
+                          selectedValue={this.state.relationship}
+                          style={{height: 100, width: '100%', color: 'black'}}
+                          onValueChange={(itemValue) =>
+                            this.setState({relationship: itemValue})
+                          }
+                          items={[
+                              { label: 'Mother', value: 'mother'},
+                              { label: 'Father', value: 'father' },
+                              { label: 'Family Member', value: 'familyMember' },
+                              { label: 'Nanny/Babysitter', value: 'nannyBabysitter' },
+                              { label: 'Other', value: 'other' },
+                          ]}
+                      />
                     
 
               <TouchableOpacity
@@ -229,6 +247,7 @@ const styles = StyleSheet.create({
     },
 
     registerBtn:{
+      marginTop: 30,
       paddingTop:10,
       paddingBottom:10,
       backgroundColor:'#d81b60',
@@ -250,7 +269,27 @@ const styles = StyleSheet.create({
       textAlign:'center',
       paddingLeft : 10,
       paddingRight : 10
-    }
+    },
+    inputIOS: {
+      fontSize: 16,
+      paddingVertical: 12,
+      paddingHorizontal: 10,
+      borderWidth: 1,
+      borderColor: 'gray',
+      borderRadius: 4,
+      color: 'black',
+      paddingRight: 30, // to ensure the text is never behind the icon
+    },
+    inputAndroid: {
+      fontSize: 16,
+      paddingHorizontal: 10,
+      paddingVertical: 8,
+      borderWidth: 0.5,
+      borderColor: 'purple',
+      borderRadius: 8,
+      color: 'black',
+      paddingRight: 30, // to ensure the text is never behind the icon
+    },
 });
 
 

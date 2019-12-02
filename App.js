@@ -85,28 +85,9 @@ const HomeTab = createBottomTabNavigator(
   }
 );
 
-const SignedIn = createDrawerNavigator(
-  {
-      Register: { screen: Register }
-  },
-  {
-      contentComponent: (props) => (
-          <View style={{ flex: 1 }}>
-              <SafeAreaView style={{ flex:1, backgroundColor: '#3a2995' }}>
-                  <DrawerItems {...props} />
-                  <Button
-                      title="Logout"
-                      onPress={() => props.navigation.navigate('SignedOut')}
-                  />
-              </SafeAreaView>
-          </View>
-      )
-  }
-);
-
 // const SignedIn = createDrawerNavigator(
 //   {
-//       Timeline: { screen: HomeTab }
+//       Register: { screen: Register }
 //   },
 //   {
 //       contentComponent: (props) => (
@@ -122,6 +103,25 @@ const SignedIn = createDrawerNavigator(
 //       )
 //   }
 // );
+
+const SignedIn = createDrawerNavigator(
+  {
+      Timeline: { screen: HomeTab }
+  },
+  {
+      contentComponent: (props) => (
+          <View style={{ flex: 1 }}>
+              <SafeAreaView style={{ flex:1, backgroundColor: '#3a2995' }}>
+                  <DrawerItems {...props} />
+                  <Button
+                      title="Logout"
+                      onPress={() => props.navigation.navigate('SignedOut')}
+                  />
+              </SafeAreaView>
+          </View>
+      )
+  }
+);
 
 
 const SignedOut = createStackNavigator(
