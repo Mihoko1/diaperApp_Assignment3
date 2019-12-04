@@ -10,7 +10,9 @@ export default class Timer extends Component {
       timer: null,
       minutes_Counter: '00',
       seconds_Counter: '00',
-      startDisable: false
+      startDisable: false,
+      
+
     }
   }
  
@@ -88,6 +90,15 @@ export default class Timer extends Component {
           disabled={this.state.startDisable} >
  
           <Text style={styles.buttonText}> CLEAR </Text>
+ 
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={this.onButtonClear}
+          activeOpacity={0.6}
+          style={[styles.button, { backgroundColor: this.state.startDisable ? '#B0BEC5' : '#FF6F00'}]} 
+          disabled={this.state.registerDisable} >
+ 
+          <Text style={styles.buttonText}> SAVE </Text>
  
         </TouchableOpacity>
  
